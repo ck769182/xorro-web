@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/ck769182/xorro-web/compare/v1.2.0...v1.3.0) (2024-11-22)
+
+
+### Features
+
+* Update vercel.json ([42acdaf](https://github.com/ck769182/xorro-web/commit/42acdaf2dabc5b838ed6bb8cc2b1c86e27bdc4c1))
+
 # [1.2.0](https://github.com/ck769182/xorro-web/compare/v1.1.0...v1.2.0) (2024-11-22)
 
 
