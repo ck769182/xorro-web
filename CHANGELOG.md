@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/ck769182/xorro-web/compare/v1.3.0...v1.4.0) (2024-11-22)
+
+
+### Features
+
+* Update preview.yaml ([d040221](https://github.com/ck769182/xorro-web/commit/d040221af96809ce5a23724bb0f159f5ac0091d7))
+
 # [1.3.0](https://github.com/ck769182/xorro-web/compare/v1.2.0...v1.3.0) (2024-11-22)
 
 
