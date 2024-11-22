@@ -3,7 +3,7 @@ name: Vercel Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authenticatio
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use GitHub token for authenticatio
 on:
   push:
     branches:
@@ -47,7 +47,7 @@ jobs:
         run: |
           npx semantic-release --branches main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Make sure the GitHub token is available for semantic-release
+         GH_TOKEN: ${{ secrets.GH_TOKEN}}  # Make sure the GitHub token is available for semantic-release
 
       # Pull Vercel Environment Information
       - name: Pull Vercel Environment Information
