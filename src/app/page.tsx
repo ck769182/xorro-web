@@ -80,7 +80,7 @@ export default function HomeScreen(): ReactElement {
         />
         <div className="mt-4 sm:px-20">
           <Text
-            text="Empowers creators and drives growth, fostering a vibrant and collaborative ecosystem. Amplifying creative voices and enable creators to thrive in the evolving digital landscape"
+            text="Empowers creators and drives growth, fostering a vibrant and collaborative ecosystem. The Amplifying creative voices and enable creators to thrive in the evolving digital landscape"
             align="center"
             color="white"
             variant="body2"
