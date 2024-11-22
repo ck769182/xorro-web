@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/ck769182/xorro-web/compare/v1.4.0...v1.5.0) (2024-11-22)
+
+
+### Features
+
+* Update preview.yaml ([6c1597f](https://github.com/ck769182/xorro-web/commit/6c1597ff2622e26360b6926babee3662166d7cc3))
+* Update vercel.json ([8b56cf3](https://github.com/ck769182/xorro-web/commit/8b56cf3bc279bf94546626dd0ee40205471fbca6))
+
 # [1.4.0](https://github.com/ck769182/xorro-web/compare/v1.3.0...v1.4.0) (2024-11-22)
 
 
