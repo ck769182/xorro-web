@@ -8,7 +8,6 @@ on:
   push:
     branches-ignore:
       - main
-
 permissions:
   contents: write  # Ensure the token has write access to contents
 
