@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/ck769182/xorro-web/compare/v1.1.0...v1.2.0) (2024-11-22)
+
+
+### Features
+
+* Test ([7bf4059](https://github.com/ck769182/xorro-web/commit/7bf4059b3d30f48d0e292549aa07c4c6750a651e))
+
 # [1.1.0](https://github.com/ck769182/xorro-web/compare/v1.0.0...v1.1.0) (2024-11-22)
 
 
