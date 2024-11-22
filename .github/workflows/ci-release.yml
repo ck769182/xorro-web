@@ -38,7 +38,7 @@ jobs:
         run: bun install
 
       # Install Vercel CLI with Bun
-      - name: Install Vercel CLI with Bun
+      - name: Install Vercel CLI with Bun c0
         run: bun add vercel --global
 
       # Install Semantic Release and necessary plugins
@@ -52,8 +52,7 @@ jobs:
           npx semantic-release --branches main
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Make sure the GitHub token is available for semantic-release
-
-      # Pull Vercel Environment Information
+     # Pull Vercel Environment Information
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
