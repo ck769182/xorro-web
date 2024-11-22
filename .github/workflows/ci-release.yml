@@ -1,4 +1,5 @@
 name: Vercel Production Deployment
+
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -13,24 +14,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      # Checkout the code
       - uses: actions/checkout@v3
 
+      # Install Bun
       - name: Install Bun
         run: |
           curl -fsSL https://bun.sh/install | bash
           echo "$HOME/.bun/bin" >> $GITHUB_PATH
 
+      # Install Project Dependencies with Bun
       - name: Install Project Dependencies with Bun
         run: bun install
 
+      # Install Vercel CLI with Bun
       - name: Install Vercel CLI with Bun
         run: bun add vercel --global
 
+      # Install Semantic Release and necessary plugins
+      - name: Install Semantic Release
+        run: |
+          bun add --dev semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/changelog @semantic-release/npm @semantic-release/github
+
+      # Run Semantic Release
+      - name: Run Semantic Release
+        run: |
+          npx semantic-release --branches main
+
+      # Pull Vercel Environment Information
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
+      # Build Project Artifacts
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
+      # Deploy Project Artifacts to Vercel
       - name: Deploy Project Artifacts
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
