@@ -67,5 +67,3 @@ jobs:
       # Deploy the project with version environment variable
       - name: Deploy Project
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERSION: ${{ env.TAG }}
