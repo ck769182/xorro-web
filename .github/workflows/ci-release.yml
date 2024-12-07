@@ -13,6 +13,42 @@ permissions:
   contents: write
 
 jobs:
+  create_semantic_release:
+    runs-on: ubuntu-latest
+    outputs:
+      RELEASE_TAG: ${{ steps.get_latest_tag.outputs.RELEASE_TAG }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.8.1'
+
+      - name: Semantic Release
+        id: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npx semantic-release
+
+          
+      - name: Get latest git tag
+        id: get_latest_tag
+        run: |
+          latest_tag=$(git describe --tags --abbrev=0)
+          commit_hash=$(git show-ref --tags -s "$latest_tag")
+          echo "RELEASE_TAG=$latest_tag" >> $GITHUB_OUTPUT
+
+      - name: Show Latest Release version and hash
+        run: |
+          echo "The latest release tag is: ${{ steps.get_latest_tag.outputs.RELEASE_TAG }}"
+        
+      
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
@@ -35,27 +71,6 @@ jobs:
       # Install dependencies
       - name: Install Dependencies
         run: bun install
-
-      # Install Semantic Release
-      - name: Install Semantic Release
-        run: |
-          bun add --dev semantic-release @semantic-release/git @semantic-release/github @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/npm
-
-      # Run Semantic Release
-      - name: Run Semantic Release
-        id: semantic-release
-        run: |
-          npx semantic-release --branches main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: Push Tags to Remote using bunx
-        run: |
-          version=$(npx semantic-release --dry-run | grep -oP '(?<=Published release: )\S+' || echo "No release found")
-          echo "Release Version: $version"
-          git tag -a "$version" -m "Release $version"
-          git push --tags
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
    
 
