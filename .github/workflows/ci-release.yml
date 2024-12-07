@@ -39,7 +39,7 @@ jobs:
       # Install Semantic Release
       - name: Install Semantic Release
         run: |
-          bun add --dev semantic-release @semantic-release/github @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/npm
+          bun add --dev semantic-release @semantic-release/git @semantic-release/github @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/npm
 
       # Run Semantic Release
       - name: Run Semantic Release
