@@ -50,7 +50,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Push Tags to Remote using bunx
         run: |
-          version=$(npx semantic-release --dry-run | grep -oP '(?<=Published release: )\S+')
+          version=$(npx semantic-release --dry-run | grep -oP '(?<=Published release: )\S+' || echo "No release found")
+          echo "Release Version: $version"
           git tag -a "$version" -m "Release $version"
           git push --tags
         env:
