@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/ck769182/xorro-web/compare/v1.24.0...v1.25.0) (2024-12-07)
+
+
+### Features
+
+* Update ci-release.yml ([bb0b921](https://github.com/ck769182/xorro-web/commit/bb0b921d0ddd38f3e68574d4350105e849dbaf67))
+
 # [1.24.0](https://github.com/ck769182/xorro-web/compare/v1.23.0...v1.24.0) (2024-12-07)
 
 
