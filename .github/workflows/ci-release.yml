@@ -3,24 +3,26 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Make sure the token is available for semantic-release
-  
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
 on:
   push:
     branches:
       - main
+
 permissions:
-  contents: write  # Ensure the token has write access to contents
+  contents: write
 
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
     steps:
-
       # Checkout the code
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      # Set up Node.js 20 (or higher)
-      - name: Set up Node.js 20
+      # Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -31,33 +33,33 @@ jobs:
           curl -fsSL https://bun.sh/install | bash
           echo "$HOME/.bun/bin" >> $GITHUB_PATH
 
-      # Install Project Dependencies with Bun
-      - name: Install Project Dependencies with Bun
+      # Install dependencies
+      - name: Install Dependencies
         run: bun install
 
-      # Install Vercel CLI with Bun
-      - name: Install Vercel CLI with Bun c0
-        run: bun add vercel --global
-
-      # Install Semantic Release and necessary plugins
+      # Install Semantic Release
       - name: Install Semantic Release
         run: |
-          bun add --dev semantic-release @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/changelog @semantic-release/npm @semantic-release/github
+          bun add --dev semantic-release @semantic-release/git @semantic-release/github @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/npm
 
-      # Run Semantic Release with the GitHub token
+      # Run Semantic Release
       - name: Run Semantic Release
+        id: semantic-release
         run: |
           npx semantic-release --branches main
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Make sure the GitHub token is available for semantic-release
-     # Pull Vercel Environment Information
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+   
+
+      # Pull Vercel Environment Information
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      # Build Project Artifacts
-      - name: Build Project Artifacts
+      # Build the project
+      - name: Build Project
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-      # Deploy Project Artifacts to Vercel
-      - name: Deploy Project Artifacts to Vercel
+      # Deploy the project with version environment variable
+      - name: Deploy Project
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
