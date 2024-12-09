@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/ck769182/xorro-web/compare/v1.35.0...v1.36.0) (2024-12-09)
+
+
+### Features
+
+* Update .releaserc.yaml ([a0a60ce](https://github.com/ck769182/xorro-web/commit/a0a60ce6616a7e926afc2d59dc0c5b1b1bcc7e72))
+
 # [1.26.0](https://github.com/ck769182/xorro-web/compare/v1.25.0...v1.26.0) (2024-12-07)
 
 
